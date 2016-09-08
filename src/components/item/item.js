@@ -2,13 +2,21 @@ import React from "react";
 import Radium from "radium";
 // import _ from "lodash";
 // import Flex from "./framework/flex";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 // import { FOO } from "../actions";
+import d3 from "d3";
+import * as globals from "../../util/globals";
+import { processNodes } from "../../util/processNodes";
+import toTitleCase from "title-case";
 
 
-// @connect(state => {
-//   return state.FOO;
-// })
+const returnStateNeeded = (fullStateTree) => {
+  return {
+    tree: fullStateTree.tree
+  };
+};
+
+@connect(returnStateNeeded)
 @Radium
 class Item extends React.Component {
   constructor(props) {
@@ -16,6 +24,64 @@ class Item extends React.Component {
     this.state = {
 
     };
+  }
+  drawItemIfData() {
+    const p = this.props;
+    let markup = "";
+    if (
+      p.tree.tree
+    ) {
+    //  markup = (<Tree {...this.props.location}/>);
+      const item = this.getItem();
+      const itemPageFields = ["strain", "date", "region", "authors", "accession"];
+      markup = itemPageFields.map( (field,i) => {
+        return this.getFieldMarkup(item, field, i);
+      })
+    }
+    return markup;
+  }
+  getFieldMarkup(item, field, i) {
+    const fieldNameMarkup = toTitleCase(field);
+    if (item[field]) {
+      let fieldValueMarkup = "Unknown";
+      if (field === "accession") {
+        if (item["url"]) {
+          fieldValueMarkup = (<a href={item["url"]}>{item[field]}</a>);
+        } else {
+          fieldValueMarkup = (<a href={"http://www.ncbi.nlm.nih.gov/nuccore/"+item["accession"]}>{item[field]}</a>);
+        }
+      } else if (field === "region") {
+          fieldValueMarkup = toTitleCase(item[field]);
+      } else {
+        fieldValueMarkup = item[field];
+      }
+      return (
+        <p key={i}>
+        {fieldNameMarkup}: {fieldValueMarkup}
+        </p>
+      )
+    }
+    return null;
+  }
+  getItem() {
+    const test_sample_string = "V17271";
+    const d3tree = d3.layout.tree()
+      .size([this.treePlotHeight(globals.width), globals.width]);
+    const nodes = processNodes(d3tree.nodes(this.props.tree.tree));
+    let found = null;
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+      if (node.hasOwnProperty('strain')){
+        if (node.strain === test_sample_string){
+          found = node;
+          break;
+        }
+      }
+    }
+    return found;
+  }
+  treePlotHeight(width) {
+    return 400 + 0.30 * width;
   }
   static propTypes = {
     /* react */
@@ -43,7 +109,7 @@ class Item extends React.Component {
         styles.base,
         this.props.style
       ]}>
-        {"Item"}
+        {this.drawItemIfData()}
       </div>
     );
   }

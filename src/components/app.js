@@ -16,6 +16,7 @@ import Header from "./framework/header";
 import Controls from "./controls/controls";
 import Tree from "./tree/tree";
 import Footer from "./framework/footer";
+import Item from "./item/item"
 
 const returnStateNeeded = (fullStateTree) => {
   return {
@@ -72,6 +73,16 @@ class App extends React.Component {
 
     return markup;
   }
+  drawItemIfData() {
+    const p = this.props;
+    let markup;
+
+    if (p.tree.tree) {
+      markup = (<Item/>);
+    }
+
+    return markup;
+  }
   render() {
     return (
       <div style={{
@@ -87,6 +98,7 @@ class App extends React.Component {
           justifyContent="space-between">
           <Controls {...this.props}/>
           {this.drawTreeIfData()}
+          {this.drawItemIfData()}
         </Flex>
         <Footer/>
       </div>
