@@ -155,7 +155,7 @@ class TreeView extends React.Component {
     */
     return (
       <div>
-        {this.state.okToDraw ? this.createTree() : <Spinner/>}
+        {this.state.okToDraw ? this.createTree() : "We don't have tree data yet [spinner]"}
       </div>
     );
   }

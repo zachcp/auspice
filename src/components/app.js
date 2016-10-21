@@ -20,6 +20,7 @@ import Entropy from "./charts/entropy";
 import Map from "./map/map";
 import TreeView from "./tree/treeView";
 import Footer from "./framework/footer";
+import Spinner from "./framework/spinner";
 import parseParams from "../util/parseParams";
 import queryString from "query-string";
 import getColorScale from "../util/getColorScale";
@@ -271,6 +272,7 @@ class App extends React.Component {
           alignItems="flex-start"
           justifyContent="space-between"
         >
+          <Spinner/>
           <Controls changeRoute={this.changeRoute.bind(this)}
                     location={this.state.location}
                     colorOptions={colorOptions}
