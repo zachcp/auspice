@@ -9,6 +9,7 @@ import d3 from "d3";
 import { processNodes, calcLayouts } from "../../util/processNodes";
 import * as globals from "../../util/globals";
 import Tree from "./tree";
+import Spinner from "../framework/spinner";
 
 import {Viewer, ViewerHelper} from 'react-svg-pan-zoom';
 
@@ -154,7 +155,7 @@ class TreeView extends React.Component {
     */
     return (
       <div>
-        {this.state.okToDraw ? this.createTree() : "We don't have tree data yet [spinner]"}
+        {this.state.okToDraw ? this.createTree() : <Spinner/>}
       </div>
     );
   }
