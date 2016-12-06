@@ -326,7 +326,7 @@ class App extends React.Component {
             }}
           />
           <Header/>
-          <div style={{display: "flex"}}>
+          {/*<div style={{display: "flex"}}>*/}
             <TreeView nodes={this.props.tree.nodes}
               colorScale={this.state.colorScale}
               nodeColor={this.nodeColor()}
@@ -336,19 +336,21 @@ class App extends React.Component {
               distanceMeasure={this.state.location.query.m || "div"}
               datasetGuid={this.props.tree.datasetGuid}
             />
-          <div style={{display: "flex", flexDirection: "column"}}>
+            <div style={{display: "flex", flexDirection: "column"}}>
+              {/*
               <Frequencies genotype={this.currentFrequencies()}/>
               <Entropy
                 changeRoute={this.changeRoute.bind(this)}
                 location={this.state.location}
               />
+            */}
               <Map
                 colorScale={this.state.colorScale.scale}
                 nodes={this.props.tree.nodes}
                 justGotNewDatasetRenderNewMap={false}
               />
             </div>
-          </div>
+          {/*</div>*/}
         </Background>
       </Sidebar>
     );

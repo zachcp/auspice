@@ -205,11 +205,13 @@ class Map extends React.Component {
 
     return (
       <Card center title="Transmissions">
+        <div style={{width: "auto", overflow: "hidden"}}>
         <div style={{
             height: 650,
             width: 1028,
             margin: 10
           }} id="map">
+        </div>
         </div>
       </Card>
     );

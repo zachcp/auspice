@@ -275,8 +275,8 @@ class TreeView extends React.Component {
       2. tree will be added on props loading
     */
     return (
-      <div>
         <Card center title="Phylogeny">
+          <div style={{width: "auto", overflow: "hidden"}}>
           <svg
             width={300}
             height={250 /* this should be dynamically calculated by number of elements */}
@@ -350,8 +350,8 @@ class TreeView extends React.Component {
               y={90}
               />
           </svg>
+          </div>
         </Card>
-      </div>
     );
   }
 }
