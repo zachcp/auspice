@@ -47,6 +47,8 @@ class Map extends React.Component {
       zoom: 2,
       scrollWheelZoom: false,
       maxBounds: bounds,
+      dragging: false,
+      touchZoom: true,
       minZoom: 2,
       maxZoom: 9,
       zoomControl: false
