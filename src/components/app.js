@@ -337,6 +337,7 @@ class App extends React.Component {
               datasetGuid={this.props.tree.datasetGuid}
             />
             <div style={{display: "flex", flexDirection: "column"}}>
+              Test 1
               {/*
               <Frequencies genotype={this.currentFrequencies()}/>
               <Entropy

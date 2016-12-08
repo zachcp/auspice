@@ -1097,7 +1097,7 @@ L.Symbol.marker = function (options) {
 };
 
 /*
- * Leaflet.Sleep
+ * Leaflet.Sleep https://github.com/CliffCloud/Leaflet.Sleep/blob/master/Leaflet.Sleep.js
  */
 
 /*
