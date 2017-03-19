@@ -121,15 +121,12 @@ export const legendMouseEnterExit = function (label = null) {
   };
 };
 
-export const applyFilterQuery = (filterType, fields, values) => {
-  /* filterType: e.g. authers || geographic location
-  fields: e.g. region || country || authors
-  values: list of selected values, e.g [brazil, usa, ...]
-  */
+export const applyFilterQuery = (name, values) => {
+  /*  name: e.g. authors || country || region
+      values: list of selected values, e.g [brazil, usa, ...] */
   return (dispatch) => {
     dispatch({type: types.APPLY_FILTER_QUERY,
-              // filterType,
-              fields,
+              name,
               values});
     dispatch(updateVisibility());
     dispatch(updateBranchThickness());

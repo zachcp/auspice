@@ -111,7 +111,7 @@ const Controls = (state = getDefaultState(), action) => {
   case types.APPLY_FILTER_QUERY:
     // values arrive as array
     const filters = Object.assign({}, state.filters, {});
-    filters[action.fields] = action.values;
+    filters[action.name] = action.values;
     return Object.assign({}, state, {
       filters
     });

@@ -139,9 +139,5 @@ export const colors = [
   ["#511EA8", "#482BB6", "#4039C3", "#3F4ACA", "#3E5CD0", "#416CCE", "#447CCD", "#4989C4", "#4E96BC", "#559FB0", "#5DA8A4", "#66AE96", "#6FB388", "#7AB77C", "#85BA6F", "#91BC64", "#9DBE5A", "#AABD53", "#B6BD4B", "#C2BA46", "#CDB642", "#D6B03F", "#DDA83C", "#E29D39", "#E69036", "#E67F33", "#E56D30", "#E2592C", "#DF4428", "#DC2F24"]
 ];
 
-//const filterAbbr = [["geo", "geographic location"]];
-export const filterAbbrFwd = {"geo":"geographic location", "all":"all"};
-export const filterAbbrRev = {"geographic location":"geo", "all":"all"};
-
 export const titleColors = ["#4377CD", "#5097BA", "#63AC9A", "#7CB879", "#9ABE5C", "#B9BC4A", "#D4B13F", "#E49938", "#E67030", "#DE3C26"];
 export const titleBarHeight = 50;
