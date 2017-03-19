@@ -5,15 +5,15 @@ import computeResponsive from "../../util/computeResponsive";
 import Flex from "./flex";
 import Radium from "radium";
 import d3 from "d3";
-
-
+import { applyFilterQuery } from "../../actions/treeProperties"
 
 
 @connect((state) => {
   return {
     tree: state.tree,
     metadata: state.metadata.metadata,
-    browserDimensions: state.browserDimensions.browserDimensions
+    browserDimensions: state.browserDimensions.browserDimensions,
+    selections: state.controls.filters
   };
 })
 @Radium
@@ -47,7 +47,10 @@ class Footer extends React.Component {
         paddingLeft: "0px",
         paddingRight: "10px",
         paddingTop: "1px",
-        paddingBottom: "0px"
+        paddingBottom: "0px",
+        cursor: "pointer",
+        fontSize: 14,
+        color: medGrey
       },
       line: {
         marginTop: "20px",
@@ -129,26 +132,30 @@ class Footer extends React.Component {
     // in each node there is attr.authors and attr.url
     // construct array of unique author strings
     let authorsSet = d3.set();
-    let authorsToURL = {};
     if (this.props.tree) {
       if (this.props.tree.nodes) {
         this.props.tree.nodes.forEach((node) => {
           if (node.children) { return; }
           if (node.attr.authors !== "" && node.attr.authors !== "?") {
             authorsSet.add(node.attr.authors);
-            if (node.attr.url) {
-              authorsToURL[node.attr.authors] = node.attr.url;
-            }
           }
         });
       }
     }
     const authorsListItems = authorsSet.values().sort().map((authors, index) => {
+        let selected = []
+        if (this.props.selections['authors']) {
+          selected = this.props.selections['authors'];
+        }
         return (
-          <div key={index} style={styles.citationItem}>
-            {authorsToURL[authors] ?
-              <a href={authorsToURL[authors]} target="_blank">{authors}</a> :
-              authors}
+          <div
+            key={index}
+            style={styles.citationItem}
+            onClick={() => {
+              this.props.dispatch(
+                applyFilterQuery("authors", [authors])
+              );}}>
+              { selected.includes(authors) ? <span style={{color: "#5097BA"}}>{authors}</span> : authors}
           </div>
         );
       });
