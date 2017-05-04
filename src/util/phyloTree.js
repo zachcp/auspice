@@ -1288,6 +1288,22 @@ PhyloTree.prototype.updateMultipleArray = function(treeElem, attrs, styles, dt) 
 };
 
 /**
+ * Update visibility
+ * @param {string} treeElem one of .tip or .branch
+ * @param {array} visibilities array of visibility values; visible vs hidden
+ */
+PhyloTree.prototype.updateVisibility = function(treeElem, visibilities) {
+
+  this.nodes.forEach(function(d, i) {
+    d.visibility = visibilities[i];
+  });
+
+  this.svg.selectAll(".tip")
+    .style("visibility", (d) => { return d.visibility; });
+
+};
+
+/**
  * as updateAttributeArray, but accepts a callback function rather than an array
  * with the values. will create array and call updateAttributeArray
  * @param  treeElem  --- the part of the tree to update (.tip, .branch)

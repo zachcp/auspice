@@ -134,6 +134,7 @@ class TreeView extends React.Component {
           this.props.tree.visibilityVersion !== nextProps.tree.visibilityVersion) {
         // console.log("visibilityVersion change detected", this.props.tree.visibilityVersion, nextProps.tree.visibilityVersion)
         tipStyleToUpdate["visibility"] = nextProps.tree.visibility;
+        // tree.updateVisibility(".tip", nextProps.tree.visibility);
       }
       if (nextProps.tree.tipRadiiVersion &&
           this.props.tree.tipRadiiVersion !== nextProps.tree.tipRadiiVersion) {
