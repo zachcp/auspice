@@ -9,7 +9,7 @@ import Title from "./framework/title";
 import Background from "./framework/background";
 import ToggleSidebarTab from "./framework/toggle-sidebar-tab";
 import Controls from "./controls/controls";
-import Frequencies from "./charts/frequencies";
+import Frequencies from "./charts/timeline";
 import Entropy from "./charts/entropy";
 import Map from "./map/map";
 import TreeView from "./tree/treeView";
